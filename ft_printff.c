@@ -6,15 +6,15 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:59:17 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/10 20:11:10 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/13 17:02:13 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft.h"
-# include <unistd.h>
-# include <stdarg.h>
-# include <stdio.h>
-# include <stdlib.h>
+#include "libft.h"
+#include <unistd.h>
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 #define GROSSE 10000
 typedef	struct s_print
 {
@@ -74,6 +74,38 @@ int ft_string(t_print *print)
 	return (1);
 }
 
+int	ft_strlen_custom(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return(i);
+}
+
+void	ft_putnbr_base(t_print *print, char *base)
+{
+	long long int	size;
+	long long int	nb;
+
+	nb = va_arg(print->args, long long int);
+	size = ft_strlen_custom(base);
+	if (nb < 0)
+	{
+		nb = -nb;
+		ft_putchar_fd('-', 1);
+	}
+	else
+		nb = nb;
+	if (nb >= size)
+	{
+		ft_putnbr_base(nb / size, base);
+		ft_putchar_fd(base[nb % size], 1);
+	}
+	else
+		ft_putchar_fd(base[nb % size], 1);
+}
 
 int	ft_cest_quoi(t_print *print, const char fmt)
 {
@@ -101,7 +133,10 @@ int	ft_cest_quoi(t_print *print, const char fmt)
 	}
 	else if (fmt == 'x' || fmt == 'X')
 	{
-		//exadecimal
+		if (fmt == 'x')
+			ft_putnbr_base(print, "0123456789abcdef");
+		else
+			ft_putnbr_base(print, "0123456789ABCDEF");
 	}
 	else if (fmt == '%')
 	{
@@ -133,8 +168,12 @@ int	ft_printouf(const char *fmt, ... )
 	return (print.total_value);
 }
 
+#include <stdio.h>
 int main()
 {
 	char *nice = "NICE!";
-	ft_printouf("je m'appel %s mon penis fait %d, c'est %s %%", "BORAT", 17, "NICE");
+	ft_printouf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %x de banane et %X de chapeau\n", "BORAT", 17, "NICE", 157, 157);
+	printf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %x  de banane et %X de chapeau\n", "BORAT", 17, "NICE", -157, 157);
+	 ft_putnbr_base(157, "0123456789abcdef");
+	return (0);
 }
