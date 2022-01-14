@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   ft_printff.c                                       :+:      :+:    :+:   */
@@ -6,7 +6,7 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:59:17 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/13 17:02:13 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/14 17:05:50 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define GROSSE 10000
 typedef	struct s_print
 {
+	long long int	nbr;
 	va_list	args;
 	int	wdt;
 	int	prc;
@@ -67,10 +68,10 @@ void	ft_strcpy(char *dest, char *src)
 
 int ft_string(t_print *print)
 {
-	char *pute = NULL;
+	char *str = NULL;
 
-	pute = va_arg(print->args, char *);
-	ft_putstr_fd(pute, 1);
+	str = va_arg(print->args, char *);
+	ft_putstr_fd(str, 1);
 	return (1);
 }
 
@@ -84,20 +85,19 @@ int	ft_strlen_custom(char *str)
 	return(i);
 }
 
-void	ft_putnbr_base(t_print *print, char *base)
+void	ft_putnbr_base(unsigned long long int nbr, char *base)
 {
-	long long int	size;
-	long long int	nb;
+	int	size;
+	unsigned long long int	nb;
 
-	nb = va_arg(print->args, long long int);
 	size = ft_strlen_custom(base);
 	if (nb < 0)
 	{
-		nb = -nb;
+		nb = -nbr;
 		ft_putchar_fd('-', 1);
 	}
 	else
-		nb = nb;
+		nb =  nbr;
 	if (nb >= size)
 	{
 		ft_putnbr_base(nb / size, base);
@@ -124,24 +124,24 @@ int	ft_cest_quoi(t_print *print, const char fmt)
 	}
 	else if (fmt == 'p')
 	{
-
 		//void * a caster en char *
 	}
 	else if (fmt == 'u')
 	{
-		//unsigned int
+		print->nbr = va_arg(print->args, unsigned int);
+		ft_putnbr_base(print->nbr, "0123456789");
 	}
 	else if (fmt == 'x' || fmt == 'X')
 	{
+		print->nbr = va_arg(print->args, unsigned  int);
+
 		if (fmt == 'x')
-			ft_putnbr_base(print, "0123456789abcdef");
+			ft_putnbr_base(print->nbr, "0123456789abcdef");
 		else
-			ft_putnbr_base(print, "0123456789ABCDEF");
+			ft_putnbr_base(print->nbr, "0123456789ABCDEF");
 	}
 	else if (fmt == '%')
-	{
 		write(1, "%", 1);
-	}
 	return (-1);
 }
 
@@ -172,8 +172,9 @@ int	ft_printouf(const char *fmt, ... )
 int main()
 {
 	char *nice = "NICE!";
-	ft_printouf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %x de banane et %X de chapeau\n", "BORAT", 17, "NICE", 157, 157);
-	printf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %x  de banane et %X de chapeau\n", "BORAT", 17, "NICE", -157, 157);
-	 ft_putnbr_base(157, "0123456789abcdef");
+	ft_printouf("je m'appel %s mon penis fait %d, c'est %s %%,  je veux %u de banane et %X de chapeau\n", "BORAT", 17, "NICE", -2147483649, 157);
+	printf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %u  de banane et %X de chapeau\n", "BORAT", 17, "NICE", -2147483649, 157);
+	//ft_putnbr_base(157, "0123456789abcdef");
+
 	return (0);
 }
