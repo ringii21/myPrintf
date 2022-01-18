@@ -6,7 +6,7 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 16:59:17 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/14 17:05:50 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/18 18:22:18 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	ft_putnbr_base(unsigned long long int nbr, char *base)
 		ft_putchar_fd(base[nb % size], 1);
 }
 
+
 int	ft_cest_quoi(t_print *print, const char fmt)
 {
 	if (fmt == 'i' || fmt == 'd')
@@ -124,26 +125,30 @@ int	ft_cest_quoi(t_print *print, const char fmt)
 	}
 	else if (fmt == 'p')
 	{
-		//void * a caster en char *
+		print->nbr = va_arg(print->args, unsigned long long int);
+		ft_putstr_fd("0x", 1);
+		ft_putnbr_base(print->nbr, "0123456789abcdef");
 	}
 	else if (fmt == 'u')
 	{
-		print->nbr = va_arg(print->args, unsigned int);
+		print->nbr = va_arg(print->args, unsigned  int);
 		ft_putnbr_base(print->nbr, "0123456789");
 	}
 	else if (fmt == 'x' || fmt == 'X')
 	{
-		print->nbr = va_arg(print->args, unsigned  int);
+		print->nbr = va_arg(print->args, unsigned long long  int);
 
 		if (fmt == 'x')
 			ft_putnbr_base(print->nbr, "0123456789abcdef");
 		else
 			ft_putnbr_base(print->nbr, "0123456789ABCDEF");
 	}
-	else if (fmt == '%')
-		write(1, "%", 1);
+	//else if (fmt == '%')
+		//write(1, "%", 1);
 	return (-1);
 }
+
+#include <stdio.h>
 
 int	ft_printouf(const char *fmt, ... )
 {
@@ -156,6 +161,8 @@ int	ft_printouf(const char *fmt, ... )
 	{
 		if ((fmt[i - 1] == '%') && (i > 0))
 		{
+			if (fmt[i] == '%')
+				write(1, "%", 1);
 			ft_cest_quoi(&print, fmt[i]);
 		}
 		else if (fmt[i] != '%')
@@ -163,18 +170,21 @@ int	ft_printouf(const char *fmt, ... )
 			write(1, &fmt[i], 1);
 		}
 		i++;
-
 	}
+	print.total_value = i;
 	return (print.total_value);
+	printf("%d", i);
 }
 
 #include <stdio.h>
 int main()
 {
+	int a = 50;
 	char *nice = "NICE!";
-	ft_printouf("je m'appel %s mon penis fait %d, c'est %s %%,  je veux %u de banane et %X de chapeau\n", "BORAT", 17, "NICE", -2147483649, 157);
-	printf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %u  de banane et %X de chapeau\n", "BORAT", 17, "NICE", -2147483649, 157);
-	//ft_putnbr_base(157, "0123456789abcdef");
+	int *pointer = &a;
+
+	ft_printouf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %u de banane et %x de chapeau et mon fils a %p putes, fuck %p\n", "BORAT", 17, "NICE", -2147483649, 157, nice, pointer);
+	printf("je m'appel %s mon penis fait %d, c'est %s %%, je veux %u  de banane et %x de chapeau et mon fils a %p putes, fuck %p\n", "BORAT", 17, "NICE", -2147483649, 157, nice, pointer);
 
 	return (0);
 }
