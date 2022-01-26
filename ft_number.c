@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_number.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abonard <abonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 15:38:51 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/07 19:05:33 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 14:05:11 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 15:20:46 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int val)
+#include "ft_printf.h"
+
+int	ft_number(t_print *print)
 {
-	if (val >= 32 && val <= 126)
-		return (1);
-	return (0);
+	int	num;
+
+	if (!print)
+		return (0);
+	num = va_arg(print->args, int);
+	ft_putnbr_fd(num, 1);
+	print->total_value += ft_len(num);
+	return (1);
 }

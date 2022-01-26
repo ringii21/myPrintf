@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmapi.c                                       :+:      :+:    :+:   */
+/*   ft_len_hexa.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 15:36:52 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/09 13:38:12 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 13:28:01 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 18:02:47 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+#define MAX 9223372036854775807
+int	ft_len_hexa(unsigned long long int nbr)
 {
-	char			*str;
-	int				i;
-	unsigned int	len;
+	int	len;
 
-	if (!s)
-		return (NULL);
-	len = ft_strlen(s);
-	i = 0;
-	str = malloc(sizeof(char) * len + 1);
-	if (str == NULL)
-		return (NULL);
-	while (s[i])
+	len = 0;
+	if (nbr == 0)
+		return (1);
+	while (nbr)
 	{
-		str[i] = f(i, s[i]);
-		i++;
+		nbr /= 16;
+		len++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (len);
 }

@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_toupper.c                                       :+:      :+:    :+:   */
+/*   ft_strlen_custom.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abonard <abonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/20 16:11:48 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/07 19:15:49 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 14:07:39 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 15:38:17 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_toupper(int c)
+int	ft_strlen_custom(char *str)
 {
-	if (c >= 'a' && c <= 'z')
-	{
-		c -= 32;
-	}
-	return (c);
+	int	i;
+
+	i = 0;
+	if (str)
+		while (str[i])
+			i++;
+	return(i);
 }

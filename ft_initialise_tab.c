@@ -1,19 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalnum.c                                       :+:      :+:    :+:   */
+/*   ft_initialise_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abonard <abonard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/12 15:27:51 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/07 19:04:42 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 14:03:06 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 18:40:49 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalnum(int val)
+#include "ft_printf.h"
+
+void	ft_initialise_tab(t_print *tab)
 {
-	if ((val >= '0' && val <= '9') || (val >= 'a' && val <= 'z')
-		|| (val >= 'A' && val <= 'Z'))
-		return (1);
-	return (0);
+	tab->wdt = 0;
+	tab->prc = 0;
+	tab->zero = 0;
+	tab->sign = 0;
+	tab->total_value = 0;
+	tab->zero = 0;
+	tab->dash = 0;
+	tab->sp = 0;
+	tab->pct = 0;
+	tab->nb = 0;
+//	tab->nbr = 0;
 }

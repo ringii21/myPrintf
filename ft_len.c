@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_len.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 16:02:42 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/09 11:35:54 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 13:24:13 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 18:40:33 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+int	ft_len(long long int nbr)
 {
-	size_t			i;
-	unsigned char	*csrc;
-	unsigned char	*cdest;
+	int	len;
 
-	i = 0;
-	cdest = (unsigned char *)dest;
-	csrc = (unsigned char *)src;
-	if (!src && !dest)
-		return (0);
-	while (i < n)
+	len = 0;
+	if (nbr == 0)
+		return (1);
+	else if (nbr == -2147483648)
+		return (11);
+	else if (nbr < 0)
 	{
-		*(unsigned char *)cdest = *(unsigned char *)src;
-		cdest++;
-		src++;
-		i++;
+		nbr = -nbr;
+		len++;
 	}
-	return (dest);
+	while (nbr > 0)
+	{
+		nbr /= 10;
+		len++;
+	}
+	return (len);
 }

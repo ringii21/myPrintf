@@ -6,11 +6,11 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 15:53:26 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/07 19:04:08 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/26 15:20:29 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
 void	ft_bzero(void *s, size_t n)
 {

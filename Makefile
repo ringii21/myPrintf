@@ -6,52 +6,31 @@
 #    By: abonard <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 13:12:51 by abonard           #+#    #+#              #
-#    Updated: 2021/12/09 13:14:47 by abonard          ###   ########.fr        #
+#    Updated: 2022/01/26 14:42:25 by abonard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #-*-Makefile-*-
 
-SRCS		= 		ft_isalpha.c\
-					ft_isdigit.c\
-					ft_isalnum.c\
-					ft_isascii.c\
-					ft_isprint.c\
-					ft_strlen.c\
-					ft_memset.c\
-					ft_bzero.c\
-					ft_memcpy.c\
-					ft_memmove.c\
-					ft_strlcpy.c\
-					ft_strlcat.c\
-					ft_toupper.c\
-					ft_tolower.c\
-					ft_strchr.c\
-					ft_strrchr.c\
-					ft_strncmp.c\
-					ft_memchr.c\
-					ft_memcmp.c\
-					ft_strnstr.c\
-					ft_atoi.c\
-					ft_calloc.c\
-					ft_strdup.c\
-					ft_substr.c\
-					ft_strjoin.c\
-					ft_strtrim.c\
-					ft_split.c\
-					ft_itoa.c\
+SRCS =					ft_len.c\
+					ft_len_hexa.c\
+					ft_number.c\
+					ft_strlen_custom.c\
+					ft_strcpy.c\
+					ft_string.c\
+					ft_parsing.c\
+					ft_printf.c\
+					ft_putnbr_base.c\
 					ft_putchar_fd.c\
 					ft_putstr_fd.c\
 					ft_putnbr_fd.c\
-					ft_putendl_fd.c\
-					ft_strmapi.c\
-					ft_striteri.c
+					ft_initialise_tab.c
 
-HEAD		=		libft.h
+HEAD		=		libftprintf.h
 
 OBJS		= ${SRCS:.c=.o}
 
-NAME		= libft.a
+NAME		= libftprintf.a
 
 CC			= gcc
 
@@ -63,7 +42,7 @@ CFLAGS		= -Wall -Wextra -Werror
 			${CC} ${CFLAGS} -I ${HEAD} -c $< -o ${<:.c=.o}
 
 ${NAME}:	${OBJS}
-			ar -rc libft.a ${OBJS}
+			ar -rc libftprintf.a ${OBJS}
 
 all:		${NAME}
 

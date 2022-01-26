@@ -1,27 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 17:47:19 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/09 14:11:19 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 14:10:29 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 18:29:14 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+void	ft_putnbr_base(unsigned long long int nbr, char *base)
 {
-	unsigned int	i;
+	unsigned long long int	size;
+	unsigned long long int	guy;
 
-	if (!s)
-		return ;
-	i = 0;
-	while (s[i])
+	guy = nbr;
+	size = ft_strlen_custom(base);
+/*	if (nb < 0)
 	{
-		f(i, s + i);
-		i++;
+		nb = -nbr;
+		ft_putchar_fd('-', 1);
 	}
+	else*/
+//		nb =  nbr;
+	if (guy >= size)
+	{
+		ft_putnbr_base(guy / size, base);
+		ft_putchar_fd(base[guy % size], 1);
+	}
+	else
+		ft_putchar_fd(base[guy % size], 1);
 }

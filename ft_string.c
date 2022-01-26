@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_string.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 16:21:35 by abonard           #+#    #+#             */
-/*   Updated: 2021/12/07 19:10:22 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 14:07:58 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 17:11:07 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_putendl_fd(char *s, int fd)
+int ft_string(t_print *print)
 {
-	ft_putstr_fd(s, fd);
-	write(fd, "\n", 1);
+	char *str;
+
+	str = va_arg(print->args, char *);
+	ft_putstr_fd(str, 1);
+	if (!str)
+		print->total_value += ft_strlen_custom("(null)");
+	else
+		print->total_value += ft_strlen_custom(str);
+	return (1);
 }
