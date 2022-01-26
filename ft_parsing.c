@@ -6,53 +6,51 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:11:44 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/26 19:01:29 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:32:07 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void	ft_cfmt(t_print *print)
+{
+	char	c;
+
+	c = va_arg(print->args, int);
+	write(1, &c, 1);
+	print->total_value += 1;
+}
+
+void	ft_ufmt(t_print *print)
+{
+	print->nbr = va_arg(print->args, unsigned int);
+	ft_putnbr_base(print->nbr, "0123456789");
+	print->total_value += ft_len(print->nbr);
+}
+
+void	ft_percent(t_print *print)
+{
+	write(1, "%", 1);
+	print->total_value++;
+	print->pct = 1;
+}
 
 int	ft_parsing(t_print *print, const char fmt)
 {
 	if (fmt == 'i' || fmt == 'd')
 		ft_number(print);
 	else if (fmt == 'c')
-	{
-		char	c;
-		c = va_arg(print->args, int);
-		write(1, &c, 1);
-		print->total_value += 1;
-	}
+		ft_cfmt(print);
 	else if (fmt == 's')
 		ft_string(print);
 	else if (fmt == 'p')
-	{
-		print->nbr = va_arg(print->args, unsigned long long int);
-		ft_putstr_fd("0x", 1);
-		ft_putnbr_base(print->nbr, "0123456789abcdef");
-		print->total_value += ft_len_hexa(print->nbr) + 2;
-	}
+		ft_pfmt(print);
 	else if (fmt == 'u')
-	{
-		print->nbr = va_arg(print->args, unsigned  int);
-		ft_putnbr_base(print->nbr, "0123456789");
-		print->total_value += ft_len(print->nbr);
-	}
+		ft_ufmt(print);
 	else if (fmt == 'x' || fmt == 'X')
-	{
-		print->nb = va_arg(print->args,unsigned int);
-		if (fmt == 'x')
-			ft_putnbr_base(print->nb, "0123456789abcdef");
-		else
-			ft_putnbr_base(print->nb, "0123456789ABCDEF");
-		print->total_value += ft_len_hexa(print->nb);
-	}
+		ft_xfmt(print, fmt);
 	else if (fmt == '%' && print->pct == 0)
-	{
-		write(1, "%", 1);
-		print->total_value++;
-		print->pct = 1;
-	}
+		ft_percent(print);
 	else
 	{
 		if (print->pct == 1 && fmt == '%')

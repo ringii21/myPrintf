@@ -1,39 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_pfmt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 20:32:53 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/26 20:33:36 by abonard          ###   ########.fr       */
+/*   Created: 2022/01/26 20:19:10 by abonard           #+#    #+#             */
+/*   Updated: 2022/01/26 20:21:22 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_printf(const char *fmt, ...)
+void	ft_pfmt(t_print *print)
 {
-	int		i;
-	t_print	print;
-
-	i = 0;
-	va_start(print.args, fmt);
-	ft_initialise_tab(&print);
-	while (fmt && fmt[i])
-	{
-		if ((fmt[i - 1] == '%') && (i > 0))
-		{
-			ft_parsing(&print, fmt[i]);
-		}
-		else if (fmt[i] != '%')
-		{
-			write(1, &fmt[i], 1);
-			print.total_value++;
-		}
-		else
-			print.pct = 0;
-		i++;
-	}
-	return (print.total_value);
+	print->nbr = va_arg(print->args, unsigned long long int);
+	ft_putstr_fd("0x", 1);
+	ft_putnbr_base(print->nbr, "0123456789abcdef");
+	print->total_value += ft_len_hexa(print->nbr) + 2;
 }

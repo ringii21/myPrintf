@@ -6,15 +6,15 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:07:58 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/26 17:11:07 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:35:49 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_string(t_print *print)
+int	ft_string(t_print *print)
 {
-	char *str;
+	char	*str;
 
 	str = va_arg(print->args, char *);
 	ft_putstr_fd(str, 1);

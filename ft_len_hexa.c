@@ -6,11 +6,10 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 13:28:01 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/26 18:02:47 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:31:09 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define MAX 9223372036854775807
 int	ft_len_hexa(unsigned long long int nbr)
 {
 	int	len;

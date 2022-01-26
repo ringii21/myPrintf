@@ -6,7 +6,7 @@
 #    By: abonard <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/09 13:12:51 by abonard           #+#    #+#              #
-#    Updated: 2022/01/26 14:42:25 by abonard          ###   ########.fr        #
+#    Updated: 2022/01/26 20:21:20 by abonard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,9 @@ SRCS =					ft_len.c\
 					ft_putchar_fd.c\
 					ft_putstr_fd.c\
 					ft_putnbr_fd.c\
-					ft_initialise_tab.c
+					ft_initialise_tab.c\
+					ft_xfmt.c\
+					ft_pfmt.c
 
 HEAD		=		libftprintf.h
 

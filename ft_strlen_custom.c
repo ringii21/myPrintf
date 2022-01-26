@@ -6,7 +6,7 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 14:07:39 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/26 15:38:17 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/26 20:36:14 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,5 @@ int	ft_strlen_custom(char *str)
 	if (str)
 		while (str[i])
 			i++;
-	return(i);
+	return (i);
 }
