@@ -6,7 +6,7 @@
 /*   By: abonard <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:38:36 by abonard           #+#    #+#             */
-/*   Updated: 2022/01/26 20:37:42 by abonard          ###   ########.fr       */
+/*   Updated: 2022/01/27 12:27:42 by abonard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define FT_STRUCT_H
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
 
 typedef struct s_print
 {
